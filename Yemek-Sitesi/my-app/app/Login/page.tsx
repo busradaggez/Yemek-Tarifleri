@@ -2,7 +2,7 @@ import React from "react";
 
 const Login = () => {
     return (
-        <div className="flex items-center justify-center min-h-screen bg-no-repeat bg-cover tra bg-background1 bg-opacity-60">
+        <div className="flex items-center justify-center min-h-screen bg-no-repeat bg-cover tra bg-background1 bg-center">
             <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
                 <h2 className="text-center text-orange text-2xl font-semibold mb-6">Giriş Yap</h2>
                 <div className="mb-4">

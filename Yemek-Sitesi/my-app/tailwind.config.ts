@@ -19,7 +19,7 @@ export default {
         },
       },
       backgroundImage: {
-        background1: "url('/dunyamutfagi.jpg')",
+        background1: "url('/background1.jpg')",
         background2: "url('/background2.png')",
       },
       fontFamily: {

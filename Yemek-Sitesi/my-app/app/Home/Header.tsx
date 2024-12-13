@@ -39,12 +39,10 @@ const Header = () => {
                         </button>
 
                         <div className="absolute right-0 mt-2 w-48 bg-white border border-orange rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition duration-150 z-50">
-                            {/* Giriş Yap Link'i */}
                             <Link href="/Login" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
                                 Giriş Yap
                             </Link>
 
-                            {/* Üye Ol Link'i */}
                             <Link href="/Register" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
                                 Üye Ol
                             </Link>
