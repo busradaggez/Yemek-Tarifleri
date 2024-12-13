@@ -1,12 +1,16 @@
 import Header from "@/app/Home/Header";
-import Slider from "./Home/Slider";
+import SwiperPage from "./Home/Swiper";
+import Tarifler from "./Tarfiler/page";
 
 
 export default function Home() {
   return (
     <div>
-      <Header />
-      <Slider />
+      <div><Header /></div>
+
+      <div><SwiperPage /></div>
+      <div><Tarifler /></div>
+
     </div>
   );
 }

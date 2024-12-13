@@ -23,8 +23,8 @@ const Header = () => {
                         placeholder="Yemek tarifi ara"
                         className="w-full px-4 py-4 rounded-md focus:outline-none"
                     />
-                    <button className="ml-2 bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition">
-                        Ara
+                    <button className="ml-2 bg-orange2 text-white px-4 py-0 hover:bg-white hover:text-orange2 rounded-md transition">
+                        Tarif Ara
                     </button>
                 </div>
 
@@ -38,14 +38,16 @@ const Header = () => {
                             <div>Giriş Yap</div>
                         </button>
 
-                        <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition duration-150 z-50">
-                            <Link href="#" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                        <div className="absolute right-0 mt-2 w-48 bg-white border border-orange rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition duration-150 z-50">
+                            {/* Giriş Yap Link'i */}
+                            <Link href="/Login" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
                                 Giriş Yap
                             </Link>
-                            <Link href="#" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+
+                            {/* Üye Ol Link'i */}
+                            <Link href="/Register" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
                                 Üye Ol
                             </Link>
-
                         </div>
                     </div>
                 </div>

@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import plugin from "tailwindcss/plugin";
 
 export default {
   content: [
@@ -17,16 +18,38 @@ export default {
           xl: '5rem',
         },
       },
+      backgroundImage: {
+        background1: "url('/dunyamutfagi.jpg')",
+        background2: "url('/background2.png')",
+      },
       fontFamily: {
         sans: ["Agu Display", "sans-serif"],
       },
       colors: {
         orange: "#FFA500",
-        red: "#FF0000",
+        orange2: "#FF4500",
         white: "#FFF",
         gray: "#696969",
+        gray2: "D3D3D3",
+        black: "#000",
       },
     },
   },
-  plugins: [],
-} satisfies Config;
+  plugins: [
+    plugin(function ({ addComponents }) {
+      addComponents({
+        ".custom-input": {
+          width: "100%",
+          padding: "0.5rem 1rem",
+          border: "1px solid #e5e7eb",
+          borderRadius: "0.375rem",
+          outline: "none",
+          transition: "box-shadow 0.2s",
+          "&:focus": {
+            boxShadow: "0 0 0 2px #FFA500",
+          },
+        },
+      });
+    }),
+  ],
+};
