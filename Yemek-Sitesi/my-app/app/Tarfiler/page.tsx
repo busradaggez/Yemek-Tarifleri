@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { getAllRecipes } from "@/utils/api/recipe";
+
 interface Recipe {
     id: number;
     name: string;
@@ -35,6 +36,16 @@ const Tarifler = () => {
     const handleShowMore = () => {
         setVisibleCount((prev) => prev + 8);
     };
+
+    const handleRecipeClick = (id: number) => {
+        const token = localStorage.getItem("token"); // Kullanıcı giriş durumu kontrolü
+        if (token) {
+            router.push(`/Detay/${id}`); // Kullanıcı giriş yapmışsa detay sayfasına git
+        } else {
+            router.push("/Login"); // Giriş yapılmamışsa login sayfasına yönlendir
+        }
+    };
+
     return (
         <div className="container mx-auto p-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -61,7 +72,7 @@ const Tarifler = () => {
                             </div>
                             <div className="mt-4">
                                 <button
-                                    onClick={() => router.push(`/Detay/${recipe.id}`)}
+                                    onClick={() => handleRecipeClick(recipe.id)}
                                     className="bg-orange text-white px-4 py-2 rounded-lg hover:bg-orange2"
                                 >
                                     Tarife Git
@@ -86,4 +97,3 @@ const Tarifler = () => {
 };
 
 export default Tarifler;
-
