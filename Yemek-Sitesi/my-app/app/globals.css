@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Agu+Display&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Jost:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Agu+Display&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Jost:ital,wght@0,100..900;1,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -17,7 +17,7 @@
 }
 
 @font-face {
-  font-family: "Agu Display";
-  src: url('/fonts/AguDisplay.ttf') format('truetype');
+  font-family: "Nunito Sans";
+  src: url('/fonts/NunitoSans.ttf') format('truetype');
 }
 

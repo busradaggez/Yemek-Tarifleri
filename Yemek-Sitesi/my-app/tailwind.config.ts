@@ -19,11 +19,11 @@ export default {
         },
       },
       backgroundImage: {
-        background1: "url('/background1.jpg')",
+        background1: "url('/background1.png')",
         background2: "url('/background2.png')",
       },
       fontFamily: {
-        sans: ["Agu Display", "sans-serif"],
+        sans: ["Nunito Sans", "sans-serif"],
       },
       colors: {
         orange: "#FFA500",

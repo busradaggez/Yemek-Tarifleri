@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { getRecipeById } from "@/utils/api/recipe";
 import { FaHeart } from "react-icons/fa";
 
@@ -24,18 +24,22 @@ interface RecipeDetail {
 
 const Detay = () => {
     const params = useParams();
+    const router = useRouter();
     const [recipe, setRecipe] = useState<RecipeDetail | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
-    const [isFavorited, setIsFavorited] = useState<boolean>(false); // Favori durumu
-    const [showMessage, setShowMessage] = useState<string>(""); // Bilgilendirme mesajı
-    const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false); // Kullanıcı giriş durumu
+    const [isFavorited, setIsFavorited] = useState<boolean>(false);
+    const [showMessage, setShowMessage] = useState<string>("");
+    const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
     const id = Array.isArray(params.id) ? params.id[0] : params.id;
 
     useEffect(() => {
-        // Kullanıcı giriş kontrolü
         const token = localStorage.getItem("token");
-        setIsLoggedIn(!!token);
+        if (!token) {
+            router.push("/Login");
+        } else {
+            setIsLoggedIn(true);
+        }
 
         if (!id) return;
 
@@ -51,7 +55,7 @@ const Detay = () => {
         };
 
         fetchRecipe();
-    }, [id]);
+    }, [id, router]);
 
     const handleFavoriteClick = () => {
         setIsFavorited((prev) => !prev);
@@ -70,17 +74,14 @@ const Detay = () => {
     }
 
     return (
-        <div className="container mx-auto p-4 flex justify-center items-center min-h-screen bg-background2 bg-no-repeat bg-cover bg-center">
-            {/* Bilgilendirme Mesajı */}
+        <div className="flex justify-center items-center min-h-screen bg-background2 bg-no-repeat bg-cover bg-center">
             {showMessage && (
                 <div className="fixed top-16 left-1/2 transform -translate-x-1/2 w-auto px-6 py-2 bg-green-100 text-green-800 rounded shadow-md">
                     {showMessage}
                 </div>
             )}
 
-            {/* Tarif Detayı */}
             <div className="bg-white rounded-lg shadow-lg p-8 max-w-3xl w-full text-left relative">
-                {/* Favori Butonu */}
                 {isLoggedIn && (
                     <button
                         onClick={handleFavoriteClick}
@@ -121,7 +122,6 @@ const Detay = () => {
                     <strong>Puan:</strong> {recipe.rating} / 5 ({recipe.reviewCount} yorum)
                 </p>
 
-                {/* Malzemeler */}
                 <div className="mt-6">
                     <h2 className="text-lg font-bold text-black">Malzemeler</h2>
                     <ul className="list-disc ml-6 text-left inline-block">
@@ -131,7 +131,6 @@ const Detay = () => {
                     </ul>
                 </div>
 
-                {/* Talimatlar */}
                 <div className="mt-6">
                     <h2 className="text-lg font-bold text-black">Talimatlar</h2>
                     <ol className="list-decimal ml-6 text-left inline-block">

@@ -6,48 +6,33 @@ import { IoPersonCircleOutline } from "react-icons/io5";
 
 const Header = () => {
     const [user, setUser] = useState<{ username: string } | null>(null);
-    const [logoutMessage, setLogoutMessage] = useState<string>(""); // Çıkış mesajı
+    const [logoutMessage, setLogoutMessage] = useState<string>("");
 
     useEffect(() => {
-        // Kullanıcı verisini localStorage'dan al
         const token = localStorage.getItem("token");
         const storedUser = localStorage.getItem("user");
 
         if (token && storedUser) {
-            // Kullanıcıyı JSON formatında parse et
             setUser(JSON.parse(storedUser));
         }
     }, []);
 
     const handleLogout = () => {
-        // Çıkış yap: localStorage'ı temizle
         localStorage.removeItem("token");
         localStorage.removeItem("user");
         setUser(null);
 
-        // Çıkış mesajını göster
         setLogoutMessage("Çıkış işleminiz başarılı!");
-        setTimeout(() => setLogoutMessage(""), 3000); // 3 saniye sonra mesajı kaldır
+        setTimeout(() => setLogoutMessage(""), 3000);
     };
 
     return (
         <div className="font-sans bg-orange shadow-md fixed top-0 w-full z-50">
-            <div className="max-w-6xl mx-auto container flex items-center justify-between h-16">
+            <div className="container mx-auto flex items-center justify-between h-16 px-4">
                 <div className="flex items-center">
-                    <img src="/logo.png" alt="Logo" className="h-12 w-auto mr-3" />
-                    <div className="text-white font-bold text-lg">Kitchen</div>
+                    <img src="/logo.png" alt="Logo" className="h-12 w-auto ml-0" />
+                    <div className="text-white font-bold text-lg ml-2">Kitchen</div>
                     <div className="text-white font-medium text-lg ml-1">Catering</div>
-                </div>
-
-                <div className="hidden md:flex flex-1 mx-6">
-                    <input
-                        type="text"
-                        placeholder="Yemek tarifi ara"
-                        className="w-full px-4 py-4 rounded-md focus:outline-none"
-                    />
-                    <button className="ml-2 bg-orange2 text-white px-4 py-0 hover:bg-white hover:text-orange2 rounded-md transition">
-                        Tarif Ara
-                    </button>
                 </div>
 
                 <div className="flex items-center space-x-4">
