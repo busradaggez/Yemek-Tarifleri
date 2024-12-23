@@ -7,7 +7,6 @@ export default function Home() {
   return (
     <div>
       <div><Header /></div>
-
       <div><SwiperPage /></div>
       <div><Tarifler /></div>
 

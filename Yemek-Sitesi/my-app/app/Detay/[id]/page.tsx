@@ -1,8 +1,12 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/utils/store/store";
+import { addFavorite, removeFavorite } from "@/utils/store/favoriteSlice";
 import { getRecipeById } from "@/utils/api/recipe";
 import { FaHeart } from "react-icons/fa";
+import Header from "@/app/Home/Header";
 
 interface RecipeDetail {
     id: number;
@@ -25,9 +29,10 @@ interface RecipeDetail {
 const Detay = () => {
     const params = useParams();
     const router = useRouter();
+    const dispatch = useDispatch();
+    const favorites = useSelector((state: RootState) => state.favorites.items);
     const [recipe, setRecipe] = useState<RecipeDetail | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
-    const [isFavorited, setIsFavorited] = useState<boolean>(false);
     const [showMessage, setShowMessage] = useState<string>("");
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
@@ -57,11 +62,19 @@ const Detay = () => {
         fetchRecipe();
     }, [id, router]);
 
+    const isFavorited = recipe && favorites.some((item) => item.id === recipe.id);
+
     const handleFavoriteClick = () => {
-        setIsFavorited((prev) => !prev);
-        setShowMessage((prev) =>
-            !isFavorited ? "Tarif favorilerinize eklenmiştir." : "Tarif favorilerden kaldırılmıştır."
-        );
+        if (!recipe) return;
+
+        if (isFavorited) {
+            dispatch(removeFavorite(recipe.id));
+            setShowMessage("Tarif favorilerden kaldırılmıştır.");
+        } else {
+            dispatch(addFavorite({ id: recipe.id, name: recipe.name, image: recipe.image }));
+            setShowMessage("Tarif favorilerinize eklenmiştir.");
+        }
+
         setTimeout(() => setShowMessage(""), 3000);
     };
 
@@ -74,7 +87,8 @@ const Detay = () => {
     }
 
     return (
-        <div className="flex justify-center items-center min-h-screen bg-background2 bg-no-repeat bg-cover bg-center">
+
+        <div className="flex justify-center items-center min-h-screen bg-background2 bg-no-repeat bg-cover bg-center mt-16">
             {showMessage && (
                 <div className="fixed top-16 left-1/2 transform -translate-x-1/2 w-auto px-6 py-2 bg-green-100 text-green-800 rounded shadow-md">
                     {showMessage}
@@ -87,7 +101,7 @@ const Detay = () => {
                         onClick={handleFavoriteClick}
                         className="absolute top-4 right-4 text-3xl transition duration-300"
                     >
-                        <FaHeart color={isFavorited ? "red" : "gray"} />
+                        <FaHeart color={isFavorited ? "#FFA500" : "gray"} />
                     </button>
                 )}
 

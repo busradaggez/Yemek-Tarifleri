@@ -21,6 +21,7 @@ export default {
       backgroundImage: {
         background1: "url('/background1.png')",
         background2: "url('/background2.png')",
+        background3: "url('/background3.png')",
       },
       fontFamily: {
         sans: ["Nunito Sans", "sans-serif"],
