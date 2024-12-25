@@ -42,25 +42,31 @@ const Header = () => {
                 </div>
                 <div className="flex items-center space-x-4">
                     <Link href="/" className="flex items-center text-white px-4 py-2 rounded-md">
-                        <IoHome size={30} className="text-white" />
+                        <IoHome size={30} className="text-white hover:text-orange2" />
                     </Link>
 
                     {user ? (
                         <div className="relative group">
                             <button className="flex items-center space-x-2 text-white px-4 py-2 bg-orange2 rounded-md">
-                                <IoPersonCircleOutline size={30} className="text-white" />
+                                <IoPersonCircleOutline size={30} className="text-white " />
                                 <div>{user.username}</div>
                             </button>
                             <div className="absolute right-0 mt-2 w-48 bg-white border border-orange rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition duration-150 z-50">
                                 <Link
+                                    href="/KullaniciBilgisi"
+                                    className="block px-4 py-2 text-gray-700 hover:bg-orange hover:text-white hover:font-bold"
+                                >
+                                    Profil
+                                </Link>
+                                <Link
                                     href="/Favoriler"
-                                    className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                                    className="block px-4 py-2 text-gray-700 hover:bg-orange hover:text-white hover:font-bold"
                                 >
                                     Favoriler
                                 </Link>
                                 <button
                                     onClick={handleLogout}
-                                    className="block px-4 py-2 text-gray-700 hover:bg-gray-100 w-full text-left"
+                                    className="block px-4 py-2 text-gray-700 hover:bg-orange hover:text-white hover:font-bold w-full text-left"
                                 >
                                     Çıkış Yap
                                 </button>

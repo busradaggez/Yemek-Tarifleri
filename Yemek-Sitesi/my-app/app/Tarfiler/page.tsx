@@ -26,15 +26,12 @@ const Tarifler = () => {
     const favorites = useSelector((state: RootState) => state.favorites.items);
 
     useEffect(() => {
-        // Kullanıcı giriş durumunu kontrol et
         const checkLoginStatus = () => {
             const token = localStorage.getItem("token");
             setIsLoggedIn(!!token);
         };
 
         checkLoginStatus();
-
-        // localStorage değişikliklerini dinleyerek durumu güncelle
         const handleStorageChange = () => {
             checkLoginStatus();
         };
@@ -95,7 +92,6 @@ const Tarifler = () => {
                             key={recipe.id}
                             className="bg-white rounded-lg shadow-md overflow-hidden border-4 p-2 border-orange relative"
                         >
-                            {/* Favori İkonunu yalnızca giriş yapmış kullanıcılar görebilir */}
                             {isLoggedIn && (
                                 <button
                                     onClick={() => handleFavoriteClick(recipe)}

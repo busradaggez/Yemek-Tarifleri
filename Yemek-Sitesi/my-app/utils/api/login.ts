@@ -7,16 +7,36 @@ export const login = async (username: string, password: string) => {
             password,
         });
 
+        // API'den dönen tüm kullanıcı verilerini al
         const userData = response.data;
         console.log("API'den dönen veri:", userData);
 
-
+        // localStorage'a token ve kullanıcı bilgilerini kaydet
         localStorage.setItem('token', userData.token);
-        localStorage.setItem('user', JSON.stringify({ username: userData.username }));
+        localStorage.setItem(
+            'user',
+            JSON.stringify({
+                id: userData.id,
+                username: userData.username,
+                firstName: userData.firstName,
+                lastName: userData.lastName,
+                email: userData.email,
+                phone: userData.phone,
+                birthDate: userData.birthDate,
+            })
+        );
 
-        return userData;
+        return {
+            id: userData.id,
+            username: userData.username,
+            firstName: userData.firstName,
+            lastName: userData.lastName,
+            email: userData.email,
+            phone: userData.phone,
+            birthDate: userData.birthDate,
+            token: userData.token,
+        };
     } catch (error) {
-
         if (error instanceof AxiosError) {
             console.error('Axios Error:', error.response?.data || error.message);
             throw new Error(error.response?.data?.message || 'Login failed. Please try again.');

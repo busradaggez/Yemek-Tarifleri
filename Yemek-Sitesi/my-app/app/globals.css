@@ -21,3 +21,14 @@
   src: url('/fonts/NunitoSans.ttf') format('truetype');
 }
 
+.login-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.profile-page {
+  padding: 20px;
+  text-align: center;
+}

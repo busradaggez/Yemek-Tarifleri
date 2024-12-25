@@ -6,7 +6,6 @@ import { RootState } from "@/utils/store/store";
 import { addFavorite, removeFavorite } from "@/utils/store/favoriteSlice";
 import { getRecipeById } from "@/utils/api/recipe";
 import { FaHeart } from "react-icons/fa";
-import Header from "@/app/Home/Header";
 
 interface RecipeDetail {
     id: number;

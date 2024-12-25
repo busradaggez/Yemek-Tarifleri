@@ -35,7 +35,7 @@ const Favoriler = () => {
     return (
         <div className="min-h-screen bg-background3 bg-cover bg-no-repeat bg-center bg-opacity-80 py-10">
             <div className="container mx-auto px-6">
-                <h1 className="text-4xl font-bold text-center bg-orange text-white mb-8">
+                <h1 className=" mt-12 text-4xl font-bold text-center bg-orange2 text-white mb-8">
                     Favoriler
                 </h1>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
