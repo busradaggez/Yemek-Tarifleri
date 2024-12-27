@@ -2,9 +2,9 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Provider } from "react-redux";
-import { store } from "@/utils/store/store";
+import store from "../utils/store/store";
 import { usePathname } from "next/navigation";
-import Header from "@/app/Home/Header";
+import Header from "../components/Header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-  const noHeaderRoutes = ["/Login", "/Register"];
+  const noHeaderRoutes = ["/Login", "/Register", "/Home"];
 
   return (
     <html lang="en">

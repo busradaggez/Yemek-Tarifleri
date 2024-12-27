@@ -2,10 +2,10 @@
 
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/utils/store/store";
+import { RootState } from "../../utils/store/store";
 import { useRouter } from "next/navigation";
 import { FaHeart } from "react-icons/fa";
-import { removeFavorite } from "@/utils/store/favoriteSlice";
+import { removeFavorite } from "../../utils/store/favoriteSlice";
 
 const Favoriler = () => {
     const favorites = useSelector((state: RootState) => state.favorites.items);

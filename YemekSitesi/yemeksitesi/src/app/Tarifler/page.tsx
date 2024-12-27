@@ -2,9 +2,9 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/utils/store/store";
-import { addFavorite, removeFavorite } from "@/utils/store/favoriteSlice";
-import { getAllRecipes } from "@/utils/api/recipe";
+import { RootState } from "../../utils/store/store";
+import { addFavorite, removeFavorite } from "../../utils/store/favoriteSlice";
+import { getAllRecipes } from "../../utils/api/recipe";
 import { FaHeart } from "react-icons/fa";
 
 interface Recipe {
@@ -20,28 +20,9 @@ const Tarifler = () => {
     const [recipes, setRecipes] = useState<Recipe[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [visibleCount, setVisibleCount] = useState<number>(8);
-    const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
     const router = useRouter();
     const dispatch = useDispatch();
     const favorites = useSelector((state: RootState) => state.favorites.items);
-
-    useEffect(() => {
-        const checkLoginStatus = () => {
-            const token = localStorage.getItem("token");
-            setIsLoggedIn(!!token);
-        };
-
-        checkLoginStatus();
-        const handleStorageChange = () => {
-            checkLoginStatus();
-        };
-
-        window.addEventListener("storage", handleStorageChange);
-
-        return () => {
-            window.removeEventListener("storage", handleStorageChange);
-        };
-    }, []);
 
     useEffect(() => {
         const fetchRecipes = async () => {
@@ -63,12 +44,7 @@ const Tarifler = () => {
     };
 
     const handleRecipeClick = (id: number) => {
-        const token = localStorage.getItem("token");
-        if (token) {
-            router.push(`/Detay/${id}`);
-        } else {
-            router.push("/Login");
-        }
+        router.push(`/Detay/${id}`);
     };
 
     const handleFavoriteClick = (recipe: Recipe) => {
@@ -92,14 +68,12 @@ const Tarifler = () => {
                             key={recipe.id}
                             className="bg-white rounded-lg shadow-md overflow-hidden border-4 p-2 border-orange relative"
                         >
-                            {isLoggedIn && (
-                                <button
-                                    onClick={() => handleFavoriteClick(recipe)}
-                                    className="absolute top-2 right-2 text-2xl"
-                                >
-                                    <FaHeart color={isFavorited ? "#FFA500" : "gray"} />
-                                </button>
-                            )}
+                            <button
+                                onClick={() => handleFavoriteClick(recipe)}
+                                className="absolute top-2 right-2 text-2xl"
+                            >
+                                <FaHeart color={isFavorited ? "#FFA500" : "gray"} />
+                            </button>
                             <img
                                 src={recipe.image}
                                 alt={recipe.name}
